@@ -43,6 +43,12 @@ void GenShip::Accelerate(sf::Time pTime)
 		IsThrusting = true;
 		Velocity.x += cos((Direction - 90) * 3.1415926535 / 180.0) * Thrust * pTime.asSeconds();
 		Velocity.y += sin((Direction - 90) * 3.1415926535 / 180.0) * Thrust * pTime.asSeconds();
+
+		sdkjgbdkjsbgkjdsbg
+
+		sdllgbzsdg
+
+		dkgjbzdksjgba
 	}
 	else
 	{
