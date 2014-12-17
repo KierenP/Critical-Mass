@@ -16,10 +16,10 @@ bool Asteroid::Generate(sf::Vector2f pPosition)
 {
 	Position = pPosition;            //Complicated stuff ahead ;)
 
-	int RandRotate = 0;              //A colective total of the current rotation from position for the next point
+	int RandRotate = 0;              //A collective total of the current rotation from position for the next point
 	int RandDistance = 0;            //Random distance center
-	int PointNum = 0;                //What point am i up to?
-	int PointCount = rand() % 4 + 4; //How many points do i want (between 4-8)
+	int PointNum = 0;                //What point am I up to?
+	int PointCount = rand() % 4 + 4; //How many points do I want (between 4-8)
 
 	Sprite.setPointCount(PointCount);
 
@@ -29,7 +29,7 @@ bool Asteroid::Generate(sf::Vector2f pPosition)
 
 		Sprite.setPoint(PointNum, sf::Vector2f((cos((RandRotate)* 3.1415926535 / 180.0) * RandDistance) + pPosition.x, (sin((RandRotate)* 3.1415926535 / 180.0) * RandDistance) + pPosition.y));  //fancy trig calculations and radian/degree convertions
 
-		int MaxCheck = 1000;  //on rare occurences (i never knew why) not giving up after 1000 trys caused crashing. Imposible configurations?
+		int MaxCheck = 1000;  //on rare occurrences (i never knew why) not giving up after 1000 tries caused crashing. Impossible configurations?
 		int CheckCount = 0;
 
 		while (i > 2 && (!(ConvexCheck(Sprite.getPoint(i), Position, Sprite.getPoint(i - 2), Sprite.getPoint(i - 1)))) && CheckCount < MaxCheck) //(i > 2) so i dont access a element out of range. basicly is keeps trying until the point makes a convex poligon
@@ -40,7 +40,7 @@ bool Asteroid::Generate(sf::Vector2f pPosition)
 		}
 
 		if (CheckCount == 1000)
-			return false;       //Poligon failed to generate.
+			return false;       //Polygon failed to generate.
 
 		if (360 - RandRotate < PointCount - i)  //to avoid a divide by 0 error later
 		{
@@ -72,7 +72,7 @@ bool Asteroid::Generate(sf::Vector2f pPosition)
 
 	if ((ConvexCheck(Sprite.getPoint(1), Position, Sprite.getPoint(Sprite.getPointCount() - 1), Sprite.getPoint(0))) == false)
 	{
-		return false;  //Havent checked points 1, and 0 due to above code (i > 2). Checking them now for concave poligon.
+		return false;  //Haven't checked points 1, and 0 due to above code (i > 2). Checking them now for concave polygon.
 	}
 
 	if ((ConvexCheck(Sprite.getPoint(0), Position, Sprite.getPoint(Sprite.getPointCount() - 2), Sprite.getPoint(Sprite.getPointCount() - 1))) == false)
@@ -81,7 +81,7 @@ bool Asteroid::Generate(sf::Vector2f pPosition)
 	}
 
 
-	return true; //Poligon was convex :) (On very, like 1/2000, a concave poligon is returned. cant find why.
+	return true; //Polygon was convex :) (On very, like 1/2000, a concave poligon is returned. cant find why.
 }
 
 bool Asteroid::ConvexCheck(sf::Vector2f Point1, sf::Vector2f Point2, sf::Vector2f Point3, sf::Vector2f Point4)
